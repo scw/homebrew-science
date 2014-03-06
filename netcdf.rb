@@ -29,12 +29,6 @@ class Netcdf < Formula
     sha1 'f1887314455330f4057bc8eab432065f8f6f74ef'
   end
 
-  def patches
-    # Fix clang issue on Mavericks
-    # http://www.unidata.ucar.edu/software/netcdf/docs/known_problems.html#clang-ncgen3
-    DATA
-  end
-
   def install
     if build.include? 'enable-fortran'
       # fix for ifort not accepting the --force-load argument, causing
@@ -88,16 +82,3 @@ class Netcdf < Formula
     end if build.include? 'enable-fortran'
   end
 end
-
-__END__
-index d34f85d..276fb6a 100644
---- a/ncgen3/genlib.h
-+++ b/ncgen3/genlib.h
-@@ -7,6 +7,7 @@
-  *********************************************************************/
- #include <stdlib.h>
- #include <limits.h>
-+#include "config.h"
-
- extern const char *progname;   /* for error messages */
- extern const char *cdlname;    /* for error messages */
