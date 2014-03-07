@@ -40,6 +40,7 @@ class Netcdf < Formula
 
     common_args = %W[
       --disable-dependency-tracking
+      --disable-dap-remote-tests
       --prefix=#{prefix}
       --enable-static
       --enable-shared
